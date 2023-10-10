@@ -21,14 +21,19 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
     <title>Slaalom</title>
 </head>
 <body>
-<h1>Slaalom</h1>
-<table>
-    <?php
-    while($kask->fetch()){
-        echo " 
+<?php
+    include('navigation.php');
+?>
+<main>
+    <h1>Slaalom</h1>
+    <table>
+        <?php
+        while($kask->fetch()){
+            echo " 
  <tr> 
  <td>$eesnimi</td> 
  <td>$perekonnanimi</td> 
@@ -38,8 +43,10 @@
  </td> 
 </tr> 
  ";
-    }
-    ?>
-</table>
+        }
+        ?>
+    </table>
+</main>
+
 </body>
 </html>

@@ -24,23 +24,24 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
     <title>Kasutaja registreerimine</title>
 </head>
 <body>
-<h1>Registreerimine</h1>
 <?php
-    if (isset($_REQUEST["lisatudeesnimi"])){
-        echo "Lisati $_REQUEST[lisatudeesnimi]";
-    }
+    include('navigation.php');
 ?>
-<form action="?">
-    <dl>
-        <dt>Eesnimi:</dt>
-        <dd><input type="text" name="eesnimi" /></dd>
-        <dt>Perekonnanimi:</dt>
-        <dd><input type="text" name="perekonnanimi" /></dd>
-        <dt><input type="submit" name="sisestusnupp" value="sisesta" /></dt>
-    </dl>
-</form>
+<main>
+    <h1>Registreerimine</h1>
+    <form action="?">
+        <dl>
+            <dt>Eesnimi:</dt>
+            <dd><input type="text" name="eesnimi" /></dd>
+            <dt>Perekonnanimi:</dt>
+            <dd><input type="text" name="perekonnanimi" /></dd>
+            <dt><input type="submit" name="sisestusnupp" value="sisesta" /></dt>
+        </dl>
+    </form>
+</main>
 </body>
 </html>

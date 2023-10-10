@@ -22,30 +22,35 @@
 <!doctype html>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="style/style.css">
     <title>Lõpetamine</title>
 </head>
 <body>
-<h1>Lõpetamine</h1>
-<table>
-    <tr>
-        <th>Eesnimi</th>
-        <th>Perekonnanimi</th>
-        <th>Teooriaeksam</th>
-        <th>Slaalom</th>
-        <th>Ringtee</th>
-        <th>Tänavasõit</th>
-        <th>Lubade väljastus</th>
-    </tr>
-    <?php
-    while($kask->fetch()){
-        $asendatud_slaalom=asenda($slaalom);
-        $asendatud_ringtee=asenda($ringtee);
-        $asendatud_t2nav=asenda($t2nav);
-        $loalahter=".";
-        if($luba==1){$loalahter="Väljastatud";}
-        if($luba==-1 and $t2nav==1){
-            $loalahter="<a href='?vormistamine_id=$id'>Vormista load</a>";  }
-        echo " 
+<?php
+include('navigation.php');
+?>
+<main>
+    <h1>Lõpetamine</h1>
+    <table>
+        <tr>
+            <th>Eesnimi</th>
+            <th>Perekonnanimi</th>
+            <th>Teooriaeksam</th>
+            <th>Slaalom</th>
+            <th>Ringtee</th>
+            <th>Tänavasõit</th>
+            <th>Lubade väljastus</th>
+        </tr>
+        <?php
+        while($kask->fetch()){
+            $asendatud_slaalom=asenda($slaalom);
+            $asendatud_ringtee=asenda($ringtee);
+            $asendatud_t2nav=asenda($t2nav);
+            $loalahter=".";
+            if($luba==1){$loalahter="Väljastatud";}
+            if($luba==-1 and $t2nav==1){
+                $loalahter="<a href='?vormistamine_id=$id'>Vormista load</a>";  }
+            echo " 
  <tr> 
  <td>$eesnimi</td> 
  <td>$perekonnanimi</td> 
@@ -56,8 +61,10 @@
  <td>$loalahter</td> 
  </tr> 
  ";
-    }
-    ?>
-</table>
+        }
+        ?>
+    </table>
+</main>
+
 </body>
 </html>
