@@ -12,6 +12,9 @@
         $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET ringtee=1 WHERE id=?");
         $kask->bind_param("i", $_REQUEST["korras_id"]);
         $kask->execute();
+
+        header("Location:tanav.php");
+        exit();
     }
 
     if (!empty($_REQUEST["vigane_id"])) {

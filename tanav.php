@@ -12,6 +12,9 @@
         $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET t2nav=1 WHERE id=?");
         $kask->bind_param("i", $_REQUEST["korras_id"]);
         $kask->execute();
+
+        header("Location:lubadeleht.php");
+        exit();
     }
 
     if (!empty($_REQUEST["vigane_id"])) {
