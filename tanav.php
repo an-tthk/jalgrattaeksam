@@ -2,6 +2,12 @@
     require_once("libs/conf.php");
     global $yhendus;
 
+    session_start();
+    if (!isset($_SESSION['tuvastamine'])) {
+        header('Location: login.php');
+        exit();
+    }
+
     if (!empty($_REQUEST["korras_id"])) {
         $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET t2nav=1 WHERE id=?");
         $kask->bind_param("i", $_REQUEST["korras_id"]);
@@ -14,7 +20,7 @@
         $kask->execute();
     }
 
-    $kask = $yhendus->prepare("SELECT id, eesnimi, perekonnanimi FROM jalgrattaeksam WHERE slaalom=1 AND ringtee=1 AND t2nav=-1");
+    $kask = $yhendus->prepare("SELECT id, eesnimi, perekonnanimi FROM jalgrattaeksam WHERE slaalom=1 AND ringtee=1 AND (t2nav=-1 OR t2nav=2)");
     $kask->bind_result($id, $eesnimi, $perekonnanimi);
     $kask->execute();
 ?>

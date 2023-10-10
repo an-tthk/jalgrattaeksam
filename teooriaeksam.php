@@ -2,6 +2,12 @@
     require_once("libs/conf.php");
     global $yhendus;
 
+    session_start();
+    if (!isset($_SESSION['tuvastamine'])) {
+        header('Location: login.php');
+        exit();
+    }
+
     if (!empty($_REQUEST["teooriatulemus"])) {
         $tulemus = $_REQUEST["teooriatulemus"];
 
