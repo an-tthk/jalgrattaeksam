@@ -13,7 +13,8 @@ if (!isset($_SESSION['tuvastamine'])) {
 </head>
 <body>
 <?php
-include('navigation.php');
+    include('header.php');
+    include('navigation.php');
 ?>
 <main>
 <h1>Salajane info</h1>

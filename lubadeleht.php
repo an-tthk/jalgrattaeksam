@@ -2,6 +2,8 @@
     require_once("libs/conf.php");
     global $yhendus;
 
+    session_start();
+
     if (!empty($_REQUEST["vormistamine_id"])) {
         $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET luba=1 WHERE id=?");
         $kask->bind_param("i", $_REQUEST["vormistamine_id"]);
@@ -33,7 +35,8 @@
 </head>
 <body>
 <?php
-include('navigation.php');
+    include('header.php');
+    include('navigation.php');
 ?>
 <main>
     <h1>Lõpetamine</h1>

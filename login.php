@@ -2,9 +2,14 @@
 require_once("libs/conf.php");
 global $yhendus;
 
+$tagasi = (isset($_REQUEST['tagasi']) && !empty($_REQUEST['tagasi'])) ? $_REQUEST['tagasi'] : "admin.php";
+if (!file_exists($tagasi)) {
+    $tagasi = "admin.php";
+}
+
 session_start();
 if (isset($_SESSION['tuvastamine'])) {
-    header('Location: admin.php');
+    header('Location: ' . $tagasi);
     exit();
 }
 
@@ -15,12 +20,15 @@ if (!empty($_POST['login']) && !empty($_POST['pass'])) {
     $sool = 'taiestisuvalinetekst';
     $kryp = crypt($pass, $sool);
 
-    $paring = "SELECT * FROM kasutajad WHERE kasutaja='$login' AND parool='$kryp'";
-    $valjund = mysqli_query($yhendus, $paring);
+    $kask = $yhendus->prepare("SELECT kasutaja FROM kasutajad WHERE kasutaja=? AND parool=?");
+    $kask->bind_param("ss", $login, $kryp);
+    $kask->bind_result($kasutaja);
+    $kask->execute();
 
-    if (mysqli_num_rows($valjund) == 1) {
+    if ($kask->fetch()) {
         $_SESSION['tuvastamine'] = 'misiganes';
-        header('Location: admin.php');
+        $_SESSION['kasutaja'] = $kasutaja;
+        header('Location: ' . $tagasi);
     } else {
         echo "kasutaja või parool on vale";
     }
@@ -34,7 +42,8 @@ if (!empty($_POST['login']) && !empty($_POST['pass'])) {
 </head>
 <body>
 <?php
-include('navigation.php');
+    include('header.php');
+    include('navigation.php');
 ?>
 <main>
 <h1>Login</h1>

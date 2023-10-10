@@ -2,6 +2,8 @@
     require_once("libs/conf.php");
     global $yhendus;
 
+    session_start();
+
     if (isset($_REQUEST["sisestusnupp"])) {
         if (!empty($_REQUEST["eesnimi"])
          && !empty($_REQUEST["perekonnanimi"])
@@ -29,6 +31,7 @@
 </head>
 <body>
 <?php
+    include('header.php');
     include('navigation.php');
 ?>
 <main>

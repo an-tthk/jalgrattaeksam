@@ -4,7 +4,7 @@
 
     session_start();
     if (!isset($_SESSION['tuvastamine'])) {
-        header('Location: login.php');
+        header('Location: login.php?tagasi=slaalom.php');
         exit();
     }
 
@@ -35,6 +35,7 @@
 </head>
 <body>
 <?php
+    include('header.php');
     include('navigation.php');
 ?>
 <main>
