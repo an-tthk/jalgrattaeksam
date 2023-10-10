@@ -14,7 +14,7 @@
         $kask->execute();
     }
 
-    $kask = $yhendus->prepare("SELECT id, eesnimi, perekonnanimi FROM jalgrattaeksam WHERE teooriatulemus>=9 AND slaalom=-1");
+    $kask = $yhendus->prepare("SELECT id, eesnimi, perekonnanimi FROM jalgrattaeksam WHERE teooriatulemus>=9 AND (slaalom=-1 OR slaalom=2)");
     $kask->bind_result($id, $eesnimi, $perekonnanimi);
     $kask->execute();
 ?>
