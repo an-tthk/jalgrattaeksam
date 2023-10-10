@@ -6,5 +6,6 @@
         <li><a href="ringtee.php">Ringtee</a></li>
         <li><a href="tanav.php">Tänav</a></li>
         <li><a href="lubadeleht.php">Lubadeleht</a></li>
+        <li><a href="https://github.com/an-tthk/jalgrattaeksam">GitHub kood</a></li>
     </ul>
 </nav>
