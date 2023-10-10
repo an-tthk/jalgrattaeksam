@@ -8,6 +8,12 @@
         $kask->execute();
     }
 
+    if (!empty($_REQUEST["kustutus_id"])) {
+        $kask = $yhendus->prepare("DELETE FROM jalgrattaeksam WHERE id=?");
+        $kask->bind_param("i", $_REQUEST["kustutus_id"]);
+        $kask->execute();
+    }
+
     $kask = $yhendus->prepare("SELECT id, eesnimi, perekonnanimi, teooriatulemus, slaalom, ringtee, t2nav, luba FROM jalgrattaeksam;");
     $kask->bind_result($id, $eesnimi, $perekonnanimi, $teooriatulemus, $slaalom, $ringtee, $t2nav, $luba);
     $kask->execute();
@@ -40,6 +46,7 @@ include('navigation.php');
             <th>Ringtee</th>
             <th>Tänavasõit</th>
             <th>Lubade väljastus</th>
+            <th>Kustutada</th>
         </tr>
         <?php
         while($kask->fetch()){
@@ -58,7 +65,8 @@ include('navigation.php');
  <td>$asendatud_slaalom</td> 
  <td>$asendatud_ringtee</td> 
  <td>$asendatud_t2nav</td> 
- <td>$loalahter</td> 
+ <td>$loalahter</td>
+ <td><a href='lubadeleht.php?kustutus_id=$id' onclick='return confirm(\"Kas ikka soovid kustutada?\")'>Kustuta</a></td>
  </tr> 
  ";
         }
