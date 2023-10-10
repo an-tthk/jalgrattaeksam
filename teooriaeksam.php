@@ -3,9 +3,20 @@
     global $yhendus;
 
     if (!empty($_REQUEST["teooriatulemus"])) {
-        $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET teooriatulemus=? WHERE id=?");
-        $kask->bind_param("ii", $_REQUEST["teooriatulemus"], $_REQUEST["id"]);
-        $kask->execute();
+        $tulemus = $_REQUEST["teooriatulemus"];
+
+        if (!preg_match("#[A-z]#", $tulemus)) {
+            $kask = $yhendus->prepare("UPDATE jalgrattaeksam SET teooriatulemus=? WHERE id=?");
+            $kask->bind_param("ii", $tulemus, $_REQUEST["id"]);
+            $kask->execute();
+
+            if ($tulemus >= 10) {
+                header("Location:slaalom.php");
+                exit();
+            }
+        } else {
+            echo "!!!";
+        }
     }
 
     $kask = $yhendus->prepare("SELECT id, eesnimi, perekonnanimi FROM jalgrattaeksam WHERE teooriatulemus=-1");

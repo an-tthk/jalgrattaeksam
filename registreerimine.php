@@ -5,16 +5,19 @@
     if (isset($_REQUEST["sisestusnupp"])) {
         if (!empty($_REQUEST["eesnimi"])
          && !empty($_REQUEST["perekonnanimi"])
-         && !preg_match('#[0-9]#', $_REQUEST["eesnimi"])
-         && !preg_match('#[0-9]#', $_REQUEST["perekonnanimi"])) {
+         && !preg_match("#[0-9]#", $_REQUEST["eesnimi"])
+         && !preg_match("#[0-9]#", $_REQUEST["perekonnanimi"])) {
 
             $kask = $yhendus->prepare("INSERT INTO jalgrattaeksam(eesnimi, perekonnanimi) VALUES (?, ?)");
             $kask->bind_param("ss", $_REQUEST["eesnimi"], $_REQUEST["perekonnanimi"]);
             $kask->execute();
             $yhendus->close();
 
-            header("Location: $_SERVER[PHP_SELF]?lisatudeesnimi=$_REQUEST[eesnimi]");
+            //header("Location: $_SERVER[PHP_SELF]?lisatudeesnimi=$_REQUEST[eesnimi]");
+            header("Location:teooriaeksam.php");
             exit();
+        } else {
+            echo "!!!";
         }
     }
 ?>
