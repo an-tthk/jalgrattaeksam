@@ -1,6 +1,6 @@
 <?php
-    $parool = 'qwerty';
-    $sool = 'taiestisuvalinetekst';
-    $kryp = crypt($parool, $sool);
+	$parool = 'qwerty';
+	$sool = 'taiestisuvalinetekst';
+	$kryp = crypt($parool, $sool);
 
-    echo $kryp;
+	echo $kryp;
